@@ -7,7 +7,7 @@ Cassandra-Data is library for Testing Insert And Read Performance Cassandra Data
 You can run the jar file using this command
 
 ```bash
-java -jar Cassandra-Data-0.0.1.jar host=127.0.0.1 port=9160 username=cassandra password=cassandra keySpace=testingcassandra table=data_test totalData=50000 clusterName="Test Cluster" consistencyLevel=ONE compression=NONE
+java -jar Cassandra-Data-0.0.1.jar host=127.0.0.1 port=9042 portThrift=9160 username=cassandra password=cassandra keySpace=testingcassandra table=data_test totalData=50000 clusterName="Test Cluster" consistencyLevel=ONE compression=NONE
 ```
 
 For Consistency Level, you can use for this options :

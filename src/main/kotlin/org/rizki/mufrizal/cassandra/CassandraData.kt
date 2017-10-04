@@ -22,17 +22,18 @@ class CassandraData {
         fun main(args: Array<String>) {
             val host = args[0].split("=")[1]
             val port = args[1].split("=")[1].toInt()
-            val username = args[2].split("=")[1]
-            val password = args[3].split("=")[1]
+            val portThrift = args[2].split("=")[1].toInt()
+            val username = args[3].split("=")[1]
+            val password = args[4].split("=")[1]
 
-            val keySpace = args[4].split("=")[1]
-            val table = args[5].split("=")[1]
-            val totalData = args[6].split("=")[1].toInt()
-            val clusterName = args[7].split("=")[1]
-            val consistencyLevel = args[8].split("=")[1]
-            val compression = args[9].split("=")[1]
+            val keySpace = args[5].split("=")[1]
+            val table = args[6].split("=")[1]
+            val totalData = args[7].split("=")[1].toInt()
+            val clusterName = args[8].split("=")[1]
+            val consistencyLevel = args[9].split("=")[1]
+            val compression = args[10].split("=")[1]
 
-            val session = CassandraDatabaseConnection.connectCassandra(host = host, port = 9042, username = username, password = password, clusterName = clusterName)
+            val session = CassandraDatabaseConnection.connectCassandra(host = host, port = portThrift, username = username, password = password, clusterName = clusterName)
             session?.execute("CREATE TABLE IF NOT EXISTS $keySpace.$table (\n" +
                     "    key text,\n" +
                     "    id text,\n" +
