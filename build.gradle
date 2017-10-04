@@ -1,0 +1,50 @@
+group 'org.rizki.mufrizal.cassandra'
+version '0.0.1'
+
+buildscript {
+    ext.kotlin_version = '1.1.50'
+    ext.cassandra_driver_core = '3.3.0'
+    ext.javafaker = '0.13'
+    ext.cassandra_thrift = '3.11.0'
+    ext.libthrift = '0.10.0'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin/'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.rizki.mufrizal.cassandra.CassandraData'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "com.datastax.cassandra:cassandra-driver-core:$cassandra_driver_core"
+    compile "org.apache.cassandra:cassandra-thrift:$cassandra_thrift"
+    compile "com.github.javafaker:javafaker:$javafaker"
+    compile "org.apache.thrift:libthrift:$libthrift"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
